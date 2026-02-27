@@ -91,8 +91,16 @@ app.post("/api/admin/login", (req, res) => {
 });
 
 // Admin Logout Route
+// app.post("/api/admin/logout", (req, res) => {
+//   res.clearCookie("admin_token");
+//   res.json({ message: "Logged out" });
+// });
 app.post("/api/admin/logout", (req, res) => {
-  res.clearCookie("admin_token");
+  res.clearCookie("admin_token", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+  });
   res.json({ message: "Logged out" });
 });
 
