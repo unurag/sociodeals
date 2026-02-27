@@ -1,5 +1,5 @@
 const express = require("express");
-const { errorHandler } = require("./middleware/errorhandler");
+const { errorHandler } = require("./middleware/errorHandler");
 const connectDB = require("./config/dbConnection");
 const dotenv = require("dotenv").config();
 const jwt = require('jsonwebtoken');
@@ -24,7 +24,7 @@ const port = process.env.PORT || 5000;
 // --- FIX: UPDATE CORS CONFIGURATION ---
 app.use(cors({
     // Allow both localhost and 127.0.0.1 to prevent mismatches
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:5174", "http://127.0.0.1:5174"],
+    origin: ["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:5174", "http://127.0.0.1:5174", "https://sociodeals.netlify.com"],
     credentials: true, // Essential for cookies
     methods: ["GET", "POST", "PUT", "DELETE"], // Allow these methods
     allowedHeaders: ["Content-Type", "Authorization"] // Allow these headers
