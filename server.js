@@ -113,4 +113,6 @@ app.use(errorHandler);
 
 app.listen(port, () => {
     console.log(`Server started on PORT ${port}`);
+    console.log(process.env.ADMIN_PASSWORD);
+    console.log(process.env.ADMIN_USERNAME)
 });
