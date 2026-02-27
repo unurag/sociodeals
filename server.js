@@ -25,21 +25,9 @@ const port = process.env.PORT || 5000;
 // --- FIX: UPDATE CORS CONFIGURATION ---
 app.use(
   cors({
-    // Allow both localhost and 127.0.0.1 to prevent mismatches
-    origin: [
-      "http://localhost:5173",
-      "http://127.0.0.1:5173",
-      "http://localhost:5174",
-      "http://127.0.0.1:5174",
-      "https://sociodeals.netlify.app",
-      "https://sociodeals.com",
-      "https://www.sociodeals.com",
-      "https://adminsociodeals.netlify.app",
-    ],
-    credentials: true, // Essential for cookies
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allow these methods
-    allowedHeaders: ["Content-Type", "Authorization"], // Allow these headers
-  }),
+    origin: true,
+    credentials: true,
+  })
 );
 app.use(cookieParser()); // Required to read the secure cookie
 app.use(express.json());
