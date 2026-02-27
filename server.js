@@ -9,6 +9,7 @@ const cors = require("cors");
 
 connectDB();
 const app = express();
+app.set("trust proxy", 1);
 // 🔒 Global Rate Limiter (30 requests per minute per IP)
 const limiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
@@ -24,7 +25,7 @@ const port = process.env.PORT || 5000;
 // --- FIX: UPDATE CORS CONFIGURATION ---
 app.use(cors({
     // Allow both localhost and 127.0.0.1 to prevent mismatches
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:5174", "http://127.0.0.1:5174", "https://sociodeals.netlify.com"],
+    origin: ["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:5174", "http://127.0.0.1:5174", "https://sociodeals.netlify.app","https://sociodeals.com", "https://www.sociodeals.com"],
     credentials: true, // Essential for cookies
     methods: ["GET", "POST", "PUT", "DELETE"], // Allow these methods
     allowedHeaders: ["Content-Type", "Authorization"] // Allow these headers
