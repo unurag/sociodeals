@@ -60,11 +60,7 @@ app.post("/api/admin/login", (req, res) => {
   // Ideally, compare with hashed password in DB
   const adminUser = process.env.ADMIN_USERNAME;
   const adminPass = process.env.ADMIN_PASSWORD;
-
-    console.log("Entered username:", username);
-  console.log("Entered password:", password);
-  console.log("ENV username:", adminUser);
-  console.log("ENV password:", adminPass);
+  
 
   if (username === adminUser && password === adminPass) {
     // Generate Token
