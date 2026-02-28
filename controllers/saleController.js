@@ -87,16 +87,16 @@ const addSale = async (req, res) => {
     `;
 
     // 🔹 Send Email to Customer
-    await mg.messages.create("sandboxdeac46830034465d99e54efa0e49938e.mailgun.org", {
-      from: "Sociodeals <no-reply@sandboxdeac46830034465d99e54efa0e49938e.mailgun.org>",
+    await mg.messages.create("mail.sociodeals.com", {
+      from: "Sociodeals <no-reply@mail.sociodeals.com>",
       to: [email],
       subject: "Your Invoice – Sociodeals",
       html: invoiceHTML,
     });
 
     // 🔹 Send Email to Admin
-    await mg.messages.create("sandboxdeac46830034465d99e54efa0e49938e.mailgun.org", {
-      from: "Sociodeals <no-reply@sandboxdeac46830034465d99e54efa0e49938e.mailgun.org>",
+    await mg.messages.create("mail.sociodeals.com", {
+      from: "Sociodeals <mail.sociodeals.com>",
       to: ["singhanurag0108@gmail.com"],
       subject: "New Sale Notification",
       html: `
