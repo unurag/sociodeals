@@ -57,104 +57,42 @@ const addSale = async (req, res) => {
     );
 
     // 🔹 Invoice HTML Template
-const bannerUrl = "https://sociodeals.com/banner.png"; // 🔹 replace with your real banner URL
+    const invoiceHTML = `
+      <div style="font-family: Arial; padding: 30px;">
+        <h2 style="color:#4f46e5;">Sociodeals Invoice</h2>
+        <p>Hi ${customerName},</p>
+        <p>Thank you for your purchase request.</p>
 
-const invoiceHTML = `
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8" />
-</head>
-<body style="margin:0; padding:0; background-color:#f4f6f9; font-family:Arial, sans-serif;">
-  
-  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f6f9; padding:20px 0;">
-    <tr>
-      <td align="center">
-        
-        <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:10px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
-          
-          <!-- 🔹 Banner -->
+        <table style="width:100%; border-collapse: collapse; margin-top:20px;">
           <tr>
-            <td>
-              <img src="${bannerUrl}" alt="Sociodeals Banner" width="100%" style="display:block;">
-            </td>
+            <td style="padding:10px; border:1px solid #ddd;">Account</td>
+            <td style="padding:10px; border:1px solid #ddd;">${username}</td>
           </tr>
-
-          <!-- 🔹 Content -->
           <tr>
-            <td style="padding:30px;">
-              
-              <h2 style="margin-top:0; color:#2563eb;">
-                Invoice Confirmation
-              </h2>
-
-              <p style="color:#555; font-size:15px;">
-                Hi <strong>${customerName}</strong>,
-              </p>
-
-              <p style="color:#555; font-size:15px;">
-                Thank you for your purchase request. Below are your order details:
-              </p>
-
-              <!-- 🔹 Invoice Table -->
-              <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:20px; border-collapse:collapse;">
-                
-                <tr>
-                  <td style="padding:12px; background:#f1f5f9; border:1px solid #e5e7eb;"><strong>Account</strong></td>
-                  <td style="padding:12px; border:1px solid #e5e7eb;">${username}</td>
-                </tr>
-
-                <tr>
-                  <td style="padding:12px; background:#f1f5f9; border:1px solid #e5e7eb;"><strong>Price</strong></td>
-                  <td style="padding:12px; border:1px solid #e5e7eb; color:#16a34a; font-weight:bold;">₹${price}</td>
-                </tr>
-
-                <tr>
-                  <td style="padding:12px; background:#f1f5f9; border:1px solid #e5e7eb;"><strong>Phone</strong></td>
-                  <td style="padding:12px; border:1px solid #e5e7eb;">${phone}</td>
-                </tr>
-
-              </table>
-
-              <p style="margin-top:25px; font-size:14px; color:#555;">
-                Our team will contact you shortly to complete the transaction.
-              </p>
-
-              <p style="margin-top:30px; font-size:14px; color:#888;">
-                — Team Sociodeals<br/>
-                <a href="https://sociodeals.com" style="color:#2563eb; text-decoration:none;">
-                  www.sociodeals.com
-                </a>
-              </p>
-
-            </td>
+            <td style="padding:10px; border:1px solid #ddd;">Price</td>
+            <td style="padding:10px; border:1px solid #ddd;">₹${price}</td>
           </tr>
-
-          <!-- 🔹 Footer -->
           <tr>
-            <td style="background:#f9fafb; text-align:center; padding:15px; font-size:12px; color:#9ca3af;">
-              © ${new Date().getFullYear()} Sociodeals. All rights reserved.
-            </td>
+            <td style="padding:10px; border:1px solid #ddd;">Phone</td>
+            <td style="padding:10px; border:1px solid #ddd;">${phone}</td>
           </tr>
-
         </table>
 
-      </td>
-    </tr>
-  </table>
+        <p style="margin-top:20px;">
+          Our team will contact you shortly to complete the transaction.
+        </p>
 
-</body>
-</html>
-`;
+        <p>— Team Sociodeals</p>
+      </div>
+    `;
 
     // 🔹 Send Email to Customer
     await mg.messages.create("mail.sociodeals.com", {
       from: "Sociodeals <no-reply@mail.sociodeals.com>",
       to: [email],
-      subject: "Your Invoice – Sociodeals.com",
+      subject: "Your Invoice – Sociodeals",
       html: invoiceHTML,
     });
-    console.log('mail sent');
 
     // 🔹 Send Email to Admin
     await mg.messages.create("mail.sociodeals.com", {

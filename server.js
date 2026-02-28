@@ -20,6 +20,17 @@ const limiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
 });
+
+const adminSalesLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 8,
+  message: {
+    message: "Too many admin sales requests. Try again in a minute.",
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
 const port = process.env.PORT || 5000;
 
 // --- FIX: UPDATE CORS CONFIGURATION ---
@@ -123,13 +134,11 @@ app.use(
   verifyAdmin,
   require("./routes/adminProductRoutes"),
 );
-app.use("/api/admin/sales", verifyAdmin, require("./routes/adminSaleRoutes"));
+app.use("/api/admin/sales", adminSalesLimiter, verifyAdmin, require("./routes/adminSaleRoutes"));
 
 app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Server started on PORT ${port}`);
-  console.log(process.env.ADMIN_PASSWORD);
   console.log(process.env.CONNECTION_STRING)
-  console.log(process.env.ADMIN_USERNAME);
 });
