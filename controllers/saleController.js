@@ -110,7 +110,7 @@ const invoiceHTML = `
                 </tr>
 
                 <tr>
-                  <td style="padding:12px; background:#f1f5f9; border:1px solid #e5e7eb;"><strong>Phone</strong></td>
+                  <td style="padding:12px; background:#f1f5f9; border:1px solid #e5e7eb;"><strong>WhatsApp Number</strong></td>
                   <td style="padding:12px; border:1px solid #e5e7eb;">${phone}</td>
                 </tr>
 
@@ -165,7 +165,7 @@ const invoiceHTML = `
         <h3>New Sale Received</h3>
         <p><strong>Customer:</strong> ${customerName}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>WhatsApp Number:</strong> ${phone}</p>
         <p><strong>Account:</strong> ${username}</p>
         <p><strong>Price:</strong> ₹${price}</p>
       `,
