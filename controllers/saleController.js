@@ -159,7 +159,7 @@ const invoiceHTML = `
     // 🔹 Send Email to Admin
     await mg.messages.create("mail.sociodeals.com", {
       from: "Sociodeals <no-reply@mail.sociodeals.com>",
-      to: ["singhanurag0108@gmail.com"],
+      to: ["sociodealsofficial@gmail.com"],
       subject: "New Sale Notification",
       html: `
         <h3>New Sale Received</h3>
