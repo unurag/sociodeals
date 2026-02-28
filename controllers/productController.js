@@ -45,6 +45,26 @@ if (req.query.posts) {
   ];
 }
 
+// ✅ ADD FOLLOWERS FILTER HERE
+if (req.query.followers) {
+  const followerRanges = req.query.followers.split(",");
+
+  const followerConditions = followerRanges.map(range => {
+    if (range.includes("+")) {
+      const min = parseInt(range);
+      return { followers: { $gte: min } };
+    }
+
+    const [min, max] = range.split("-").map(Number);
+    return { followers: { $gte: min, $lte: max } };
+  });
+
+  filters.$and = [
+    ...(filters.$and || []),
+    { $or: followerConditions }
+  ];
+}
+
 
 
   // sorting
