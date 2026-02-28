@@ -96,7 +96,7 @@ const addSale = async (req, res) => {
 
     // 🔹 Send Email to Admin
     await mg.messages.create("mail.sociodeals.com", {
-      from: "Sociodeals <mail.sociodeals.com>",
+      from: "Sociodeals <no-reply@mail.sociodeals.com>",
       to: ["singhanurag0108@gmail.com"],
       subject: "New Sale Notification",
       html: `
