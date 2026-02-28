@@ -151,7 +151,7 @@ const invoiceHTML = `
     await mg.messages.create("mail.sociodeals.com", {
       from: "Sociodeals <no-reply@mail.sociodeals.com>",
       to: [email],
-      subject: "Your Invoice – Sociodeals.com",
+      subject: "Your Invoice – Sociodeals",
       html: invoiceHTML,
     });
     console.log('mail sent');
